@@ -7,6 +7,8 @@
   <meta name="description" content="T1tan, U Sport, Spire, Adidas va Nike darvozabonlar qo'lqoplari. 100% original nemis lateksi, o'lcham jadvali va professional maslahatlar.">
   <!-- 100% Faqat HTML va CSS (Hech qanday JavaScript yo'q) -->
   <link rel="stylesheet" href="css/styles.css">
+  <!-- Savat va To'liq Summa Styllari -->
+  <link rel="stylesheet" href="css/cart.css">
 </head>
 <body>
 
@@ -44,9 +46,22 @@
         <a href="#buyurtma" class="nav-link">Buyurtma</a>
       </nav>
 
-      <a href="#buyurtma" class="nav-cta-btn">
-        <span>Tezkor Buyurtma</span> →
-      </a>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button type="button" class="nav-cart-btn" id="open-cart-btn" aria-label="Savatni ochish">
+          <span class="cart-icon-wrapper">
+            <span class="cart-icon">🛒</span>
+            <span class="cart-badge" id="cart-badge">0</span>
+          </span>
+          <span class="nav-cart-info">
+            <span class="nav-cart-label">Savat</span>
+            <span class="nav-cart-total" id="nav-cart-total">0 so'm</span>
+          </span>
+        </button>
+
+        <a href="#buyurtma" class="nav-cta-btn">
+          <span>Tezkor Buyurtma</span> →
+        </a>
+      </div>
     </div>
   </header>
 
@@ -259,8 +274,10 @@
               <span class="price-old">1 450 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="t1tan-petrol" data-name="T1tan Beast 3.0 Petrol Blue" data-price="1290000" data-image="images/t1tan-petrol-beast.png" data-brand="T1tan">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-t1tan-petrol" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -289,8 +306,10 @@
               <span class="price-old">1 950 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="nike-phantom-acc" data-name="Nike Phantom Elite ACC Orange" data-price="1750000" data-image="images/nike-phantom-orange-acc.png" data-brand="Nike">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-nike-phantom-acc" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -319,8 +338,10 @@
               <span class="price-old">1 800 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="nike-vapor-volt" data-name="Nike Vapor Grip 3 Black Volt" data-price="1620000" data-image="images/nike-vapor-black-volt.png" data-brand="Nike">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-nike-vapor-volt" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -349,8 +370,10 @@
               <span class="price-old">1 650 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="usport-speed-orange" data-name="U Sport Speed Contact Fluo" data-price="1480000" data-image="images/usport-speed-orange.png" data-brand="U Sport">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-usport-speed-orange" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -379,8 +402,10 @@
               <span class="price-old">1 500 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="usport-hyperflex" data-name="U Sport Hyperflex Absolutgrip" data-price="1350000" data-image="images/usport-hyperflex-navy.png" data-brand="U Sport">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-usport-hyperflex" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -409,8 +434,10 @@
               <span class="price-old">1 920 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="adidas-ice-blue" data-name="Adidas Predator Pro Ice Blue" data-price="1720000" data-image="images/adidas-predator-ice-blue.png" data-brand="Adidas">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-adidas-ice-blue" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -439,8 +466,10 @@
               <span class="price-old">2 050 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="adidas-solar-red" data-name="Adidas Predator Solar Red" data-price="1850000" data-image="images/adidas-predator-solar-red.png" data-brand="Adidas">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-adidas-solar-red" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -469,8 +498,10 @@
               <span class="price-old">1 490 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="t1tan-blackout" data-name="T1tan Beast 3.0 Blackout" data-price="1320000" data-image="images/t1tan-beast-blackout-neon.png" data-brand="T1tan">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-t1tan-blackout" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -499,8 +530,10 @@
               <span class="price-old">1 100 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="spire-cream-sand" data-name="Spire Phantom Elite Sand" data-price="950000" data-image="images/spire-phantom-cream-sand.png" data-brand="Spire">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-spire-cream-sand" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -529,8 +562,10 @@
               <span class="price-old">1 150 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="spire-air-black" data-name="Spire Air Pro Black & White" data-price="990000" data-image="images/spire-air-pro-black.png" data-brand="Spire">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-spire-air-black" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -559,8 +594,10 @@
               <span class="price-old">1 550 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="ks-hero-yellow" data-name="KS Hero 4mm Super Glue Yellow" data-price="1380000" data-image="images/ks-hero-superglue-yellow.png" data-brand="KS Hero">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-ks-hero-yellow" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -589,8 +626,10 @@
               <span class="price-old">1 550 000 so'm</span>
             </div>
             <div class="card-actions">
+              <button type="button" class="btn-add-cart" data-id="ks-hero-red" data-name="KS Hero 4mm Super Glue Red" data-price="1380000" data-image="images/ks-hero-superglue-red.png" data-brand="KS Hero">
+                <span>+ Savatga</span>
+              </button>
               <a href="#modal-ks-hero-red" class="btn-details">Batafsil</a>
-              <a href="#buyurtma" class="btn-buy-mini">Xarid</a>
             </div>
           </div>
         </article>
@@ -672,6 +711,9 @@
             Kerakli brend, model va o'lchamni tanlang. Operatorimiz 10 daqiqa ichida qo'ng'iroq qiladi.
           </p>
         </div>
+
+        <!-- Savatdagi Tanlangan Tovarlar va To'liq Summa (Dinamik) -->
+        <div id="order-cart-summary-box" class="order-cart-summary"></div>
 
         <form action="#modal-buyurtma-muvaffaqiyat" class="order-form-grid">
           
@@ -787,7 +829,8 @@
             <div class="modal-spec-item"><span>Bandaji:</span> <strong>Elastik cuff + BE THE TITAN ilmoq</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 290 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="t1tan-petrol" data-name="T1tan Beast 3.0 Petrol Blue" data-price="1290000" data-image="images/t1tan-petrol-beast.png" data-brand="T1tan">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -817,7 +860,8 @@
             <div class="modal-spec-item"><span>Ob-havo:</span> <strong>All Conditions Control (Universal)</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 750 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="nike-phantom-acc" data-name="Nike Phantom Elite ACC Orange" data-price="1750000" data-image="images/nike-phantom-orange-acc.png" data-brand="Nike">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -846,7 +890,8 @@
             <div class="modal-spec-item"><span>Bandaji:</span> <strong>Past o'rnatilgan harakatlanuvchi tasma</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 620 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="nike-vapor-volt" data-name="Nike Vapor Grip 3 Black Volt" data-price="1620000" data-image="images/nike-vapor-black-volt.png" data-brand="Nike">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -875,7 +920,8 @@
             <div class="modal-spec-item"><span>Orqa qism:</span> <strong>3D Embossed Rebound Zone</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 480 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="usport-speed-orange" data-name="U Sport Speed Contact Fluo" data-price="1480000" data-image="images/usport-speed-orange.png" data-brand="U Sport">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -904,7 +950,8 @@
             <div class="modal-spec-item"><span>Himoya to'ri:</span> <strong>3D Hyperflex Sariq Webbing</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 350 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="usport-hyperflex" data-name="U Sport Hyperflex Absolutgrip" data-price="1350000" data-image="images/usport-hyperflex-navy.png" data-brand="U Sport">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -934,7 +981,8 @@
             <div class="modal-spec-item"><span>Bandaji:</span> <strong>Strapless (Moslashuvchan trikotaj bilak)</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 720 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="adidas-ice-blue" data-name="Adidas Predator Pro Ice Blue" data-price="1720000" data-image="images/adidas-predator-ice-blue.png" data-brand="Adidas">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -964,7 +1012,8 @@
             <div class="modal-spec-item"><span>Tavsiya:</span> <strong>Rasmiy musobaqalar va o'yinlar</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 850 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="adidas-solar-red" data-name="Adidas Predator Solar Red" data-price="1850000" data-image="images/adidas-predator-solar-red.png" data-brand="Adidas">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -993,7 +1042,8 @@
             <div class="modal-spec-item"><span>Bandaji:</span> <strong>Mustahkam lateks/elastik manjet</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 320 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="t1tan-blackout" data-name="T1tan Beast 3.0 Blackout" data-price="1320000" data-image="images/t1tan-beast-blackout-neon.png" data-brand="T1tan">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -1022,7 +1072,8 @@
             <div class="modal-spec-item"><span>Kaft qatlami:</span> <strong>Embossed grip qovurg'alari</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">950 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="spire-cream-sand" data-name="Spire Phantom Elite Sand" data-price="950000" data-image="images/spire-phantom-cream-sand.png" data-brand="Spire">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -1051,7 +1102,8 @@
             <div class="modal-spec-item"><span>Bilak qismi:</span> <strong>Uzaytirilgan AIR elastik manjet</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">990 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="spire-air-black" data-name="Spire Air Pro Black & White" data-price="990000" data-image="images/spire-air-pro-black.png" data-brand="Spire">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -1081,7 +1133,8 @@
             <div class="modal-spec-item"><span>Bilak qismi:</span> <strong>Uzaytirilgan trikotaj HERO manjet</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 380 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="ks-hero-yellow" data-name="KS Hero 4mm Super Glue Yellow" data-price="1380000" data-image="images/ks-hero-superglue-yellow.png" data-brand="KS Hero">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -1111,7 +1164,8 @@
             <div class="modal-spec-item"><span>Bandaji:</span> <strong>Elastik qulay HERO manjet</strong></div>
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 380 000 so'm</div>
-          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center;">Buyurtma Berish</a>
+          <button type="button" class="btn-modal-cart" data-id="ks-hero-red" data-name="KS Hero 4mm Super Glue Red" data-price="1380000" data-image="images/ks-hero-superglue-red.png" data-brand="KS Hero">🛒 Savatga qo'shish</button>
+          <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
     </div>
@@ -1184,5 +1238,7 @@
     </div>
   </footer>
 
+  <!-- Savat va To'liq Summa Skripti -->
+  <script src="js/cart.js"></script>
 </body>
 </html>

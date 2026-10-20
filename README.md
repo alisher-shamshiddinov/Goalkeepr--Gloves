@@ -1,7 +1,26 @@
-# 🧤 KEEPERZONE — Darvozabonlar Qo'lqoplari Sayti (100% HTML & CSS)
+# 🧤 KEEPERZONE — Darvozabonlar Qo'lqoplari Do'koni
 
-Darvozabonlar uchun professional qo'lqoplar internet-katalogi. **Hech qanday JavaScript ishlatilmagan — 100% toza HTML5 va CSS3 asosida yaratilgan.**
-Barcha rasmsiz/shablon mahsulotlar olib tashlangan va faqatgina **12 ta haqiqiy fotosuratli professional modellar** joylashtirilgan.
+Darvozabonlar uchun professional qo'lqoplar internet-do'koni. **12 ta haqiqiy fotosuratli professional modellar**, qulay **Interaktiv Savat (Shopping Cart)** va **To'liq Summa (Total Price)** hisoblash tizimi bilan to'liq jihozlangan.
+
+---
+
+## 🛒 Yangi Savat va To'liq Summa Imkoniyatlari:
+1. **Har bir mahsulotda "Savatga" tugmasi**:
+   - Katalogdagi har bir qo'lqop kartochkasida va batafsil ko'rish modalida `+ Savatga` / `🛒 Savatga qo'shish` tugmalari mavjud.
+2. **Navbardagi Savat ko'rsatkichi**:
+   - Tovar soni (dinamik badge) va ayni damdagi jami to'liq summa (`X XXX XXX so'm`) doimiy yangilanib turadi.
+3. **Suzuvchi (Floating) Savat tugmasi**:
+   - Sahifaning pastki o'ng burchagida qulay suzuvchi tugma bo'lib, mobil va kompyuterda darhol savatni ochish va to'liq summani ko'rish imkonini beradi.
+4. **Zamonaviy Savat Paneli (Drawer / Modal)**:
+   - Tanlangan barcha tovarlar ro'yxati (rasmi, nomi, donasi narxi, miqdori `[ - ]` `[ + ]`, har bir tovar bo'yicha oraliq summa va o'chirish tugmasi).
+   - **TO'LIQ TO'LOV SUMMASI (JAMI)**: Maxsus yorqin ramkada katta ko'rsatiladi.
+   - Savatni tozalash va to'g'ridan-to'g'ri "Buyurtmani Rasmiylashtirish" tugmalari.
+5. **Buyurtma bo'limidagi hisobot bloki**:
+   - Savatdagi barcha tovarlar va ularning **TO'LIQ SUMMASI** buyurtma formasining tepasida ko'rsatiladi va formaga avtomatik bog'lanadi.
+6. **Xotirada saqlanish (LocalStorage)**:
+   - Sahifa yangilansa (F5) ham savatdagi tovarlar va to'liq summa yo'qolib ketmaydi.
+7. **Toast Xabarnomalar**:
+   - Tovarlar savatga qo'shilganda chiroyli vizual xabarlar chiqadi.
 
 ---
 

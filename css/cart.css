@@ -1,0 +1,792 @@
+/* ==========================================================================
+   KEEPERZONE — CART & TOTAL PRICE SYSTEM STYLES
+   ========================================================================== */
+
+/* Navbar Cart Button */
+.nav-cart-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-surface-elevated, #151d32);
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: var(--radius-md, 14px);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  position: relative;
+}
+
+.nav-cart-btn:hover {
+  background: rgba(16, 185, 129, 0.15);
+  border-color: var(--brand-green, #10b981);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.25);
+}
+
+.cart-icon-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-icon-wrapper .cart-icon {
+  font-size: 18px;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  min-width: 18px;
+  height: 18px;
+  line-height: 18px;
+  padding: 0 4px;
+  border-radius: 9999px;
+  text-align: center;
+  box-shadow: 0 2px 6px rgba(239, 68, 68, 0.5);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.cart-badge.bump {
+  transform: scale(1.35);
+}
+
+.nav-cart-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.2;
+}
+
+.nav-cart-label {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--text-muted, #94a3b8);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.nav-cart-total {
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--brand-green, #10b981);
+}
+
+/* Floating Cart Button (Pastki o'ng suzuvchi tugma) */
+.floating-cart-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #042f2e;
+  padding: 12px 18px;
+  border-radius: 9999px;
+  box-shadow: 0 8px 30px rgba(16, 185, 129, 0.45), 0 0 20px rgba(16, 185, 129, 0.25);
+  cursor: pointer;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  font-weight: 800;
+  font-size: 13px;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-cart-btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(16, 185, 129, 0.6), 0 0 30px rgba(16, 185, 129, 0.4);
+}
+
+.floating-cart-badge {
+  background: #042f2e;
+  color: #10b981;
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  font-weight: 900;
+}
+
+.floating-cart-total {
+  color: #ffffff;
+  background: rgba(4, 47, 46, 0.35);
+  padding: 3px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+}
+
+/* Add to Cart Buttons on Cards */
+.btn-add-cart {
+  background: linear-gradient(135deg, var(--brand-green, #10b981), #059669);
+  color: #042f2e;
+  border: none;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  padding: 8px 12px;
+  border-radius: var(--radius-sm, 8px);
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.btn-add-cart:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+  filter: brightness(1.1);
+}
+
+.btn-add-cart:active {
+  transform: scale(0.96);
+}
+
+.btn-add-cart.added {
+  background: #047857;
+  color: #fff;
+}
+
+/* Modal Add to Cart button */
+.btn-modal-cart {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #042f2e;
+  border: none;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 12px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn-modal-cart:hover {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+}
+
+/* ==========================================================================
+   CART DRAWER (SLIDE-OUT PANEL)
+   ========================================================================== */
+.cart-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.cart-drawer-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -480px;
+  width: 100%;
+  max-width: 440px;
+  height: 100vh;
+  background: #0c1221;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8);
+  z-index: 2001;
+  display: flex;
+  flex-direction: column;
+  transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.cart-drawer-overlay.active .cart-drawer {
+  right: 0;
+}
+
+/* Cart Header */
+.cart-header {
+  padding: 18px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #0e1528;
+}
+
+.cart-header-title {
+  font-size: 18px;
+  font-weight: 900;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cart-header-title span.cart-title-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: var(--brand-green, #10b981);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.cart-close-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cart-close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #ef4444;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+/* Cart Items Body */
+.cart-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Empty State */
+.cart-empty {
+  margin: auto;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.cart-empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  filter: drop-shadow(0 4px 15px rgba(0, 0, 0, 0.5));
+  opacity: 0.8;
+}
+
+.cart-empty-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.cart-empty-desc {
+  font-size: 13px;
+  color: var(--text-muted, #94a3b8);
+  line-height: 1.5;
+  margin-bottom: 22px;
+}
+
+.cart-empty-btn {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--brand-green, #10b981), #059669);
+  color: #042f2e;
+  font-weight: 800;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.2s ease;
+}
+
+.cart-empty-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* Individual Cart Item */
+.cart-item {
+  background: rgba(18, 26, 45, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 12px;
+  position: relative;
+  transition: border-color 0.2s ease;
+}
+
+.cart-item:hover {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.cart-item-img {
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle at 50% 50%, #1e293b, #090d16);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+}
+
+.cart-item-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cart-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.cart-item-brand {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--brand-green, #10b981);
+}
+
+.cart-item-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1.3;
+  margin-top: 2px;
+}
+
+.cart-item-delete {
+  background: none;
+  border: none;
+  color: #64748b;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 2px 4px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.cart-item-delete:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.cart-item-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.cart-item-qty {
+  display: inline-flex;
+  align-items: center;
+  background: #090d16;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: none;
+  border: none;
+  color: #cbd5e1;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s ease;
+}
+
+.qty-btn:hover {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+}
+
+.qty-number {
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  min-width: 24px;
+  text-align: center;
+}
+
+.cart-item-price-col {
+  text-align: right;
+}
+
+.cart-item-unit-price {
+  font-size: 11px;
+  color: var(--text-dim, #64748b);
+}
+
+.cart-item-subtotal {
+  font-size: 13px;
+  font-weight: 800;
+  color: #fff;
+}
+
+/* ==========================================================================
+   CART FOOTER & TOTAL PRICE BOX (TO'LIQ SUMMA KO'RSATADIGAN JOY)
+   ========================================================================== */
+.cart-footer {
+  padding: 18px 22px;
+  background: #0e1528;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.cart-summary-table {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.cart-summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: var(--text-muted, #94a3b8);
+}
+
+.cart-summary-row span:last-child {
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.free-delivery-badge {
+  color: var(--brand-green, #10b981) !important;
+  font-weight: 800 !important;
+  background: rgba(16, 185, 129, 0.15);
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+
+/* TOTAL PRICE HIGHLIGHT BOX (ASOSIY TO'LIQ SUMMA) */
+.cart-total-box {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.12), rgba(6, 182, 212, 0.08));
+  border: 1.5px solid rgba(16, 185, 129, 0.45);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 20px rgba(16, 185, 129, 0.15);
+}
+
+.cart-total-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-total-label {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-total-label small {
+  font-size: 10px;
+  color: var(--text-muted, #94a3b8);
+  font-weight: 500;
+  text-transform: none;
+}
+
+.cart-total-amount {
+  font-size: 20px;
+  font-weight: 900;
+  color: #10b981;
+  text-shadow: 0 0 15px rgba(16, 185, 129, 0.4);
+  letter-spacing: 0.5px;
+}
+
+/* Actions in Cart Footer */
+.cart-actions-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.btn-checkout {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: #042f2e;
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 13px 20px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+  text-decoration: none;
+}
+
+.btn-checkout:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(16, 185, 129, 0.55);
+}
+
+.btn-clear-cart {
+  background: transparent;
+  color: #64748b;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.2s ease;
+  text-align: center;
+}
+
+.btn-clear-cart:hover {
+  color: #ef4444;
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   ORDER SECTION - ORDER SUMMARY (BUYURTMA FORMADAGI TO'LIQ SUMMA BLOKI)
+   ========================================================================== */
+.order-cart-summary {
+  background: rgba(18, 26, 45, 0.9);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius-lg, 20px);
+  padding: 20px;
+  margin-bottom: 24px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.order-cart-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 14px;
+}
+
+.order-cart-summary-title {
+  font-size: 15px;
+  font-weight: 800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.order-cart-items-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 5px;
+  margin-bottom: 14px;
+}
+
+.order-cart-mini-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  background: rgba(14, 21, 36, 0.6);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.order-cart-mini-name {
+  color: #f1f5f9;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.order-cart-mini-qty {
+  color: var(--brand-green, #10b981);
+  font-weight: 800;
+}
+
+.order-cart-mini-price {
+  color: #fff;
+  font-weight: 800;
+}
+
+.order-total-banner {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(14, 165, 233, 0.15));
+  border: 1.5px solid var(--brand-green, #10b981);
+  border-radius: 12px;
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+}
+
+.order-total-text {
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.order-total-value {
+  font-size: 22px;
+  font-weight: 900;
+  color: #10b981;
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+/* ==========================================================================
+   TOAST NOTIFICATION (MAHSULOT QO'SHILGANDA XABAR)
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 85px;
+  right: 25px;
+  z-index: 3000;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  background: #0f172a;
+  color: #fff;
+  border: 1px solid rgba(16, 185, 129, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(16, 185, 129, 0.2);
+  border-radius: 10px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 13px;
+  font-weight: 700;
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  max-width: 340px;
+}
+
+.toast-icon {
+  background: rgba(16, 185, 129, 0.2);
+  color: #10b981;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.toast-message {
+  flex: 1;
+  line-height: 1.3;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes toastOut {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px) scale(0.9);
+  }
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .cart-drawer {
+    max-width: 100%;
+  }
+
+  .nav-cart-info {
+    display: none;
+  }
+
+  .floating-cart-btn {
+    bottom: 20px;
+    right: 15px;
+    padding: 10px 14px;
+    font-size: 12px;
+  }
+
+  .floating-cart-total {
+    display: none;
+  }
+
+  .toast-container {
+    right: 15px;
+    left: 15px;
+    bottom: 75px;
+  }
+  
+  .toast {
+    max-width: 100%;
+  }
+}
