@@ -9,6 +9,10 @@
   <link rel="stylesheet" href="css/styles.css">
   <!-- Savat va To'liq Summa Styllari -->
   <link rel="stylesheet" href="css/cart.css">
+  <!-- Har bir qo'lqop uchun video pleer styllari -->
+  <link rel="stylesheet" href="css/video.css">
+  <!-- QR Kod va Mobil Skaner Styllari -->
+  <link rel="stylesheet" href="css/qr.css">
 </head>
 <body>
 
@@ -47,6 +51,11 @@
       </nav>
 
       <div style="display: flex; align-items: center; gap: 12px;">
+        <button type="button" class="nav-qr-btn" data-open-qr aria-label="QR kodni ochish" title="Smartfon orqali ochish">
+          <span class="qr-icon">📱</span>
+          <span>QR Kod</span>
+        </button>
+
         <button type="button" class="nav-cart-btn" id="open-cart-btn" aria-label="Savatni ochish">
           <span class="cart-icon-wrapper">
             <span class="cart-icon">🛒</span>
@@ -109,6 +118,17 @@
             <div class="hero-feature-item">
               <span>🚚</span>
               <div>Yetkazib Berish</div>
+            </div>
+          </div>
+
+          <!-- Mobil Tezkor Skaner Kartochkasi -->
+          <div class="hero-qr-badge" data-open-qr title="Smartfon orqali ochish uchun bosing">
+            <div class="hero-qr-thumb" id="hero-qr-thumb">
+              <!-- SVG QR kod -->
+            </div>
+            <div class="hero-qr-info">
+              <h5>📱 Smartfondan Ochish <span style="font-size: 10px; background: rgba(16,185,129,0.2); color: #10b981; padding: 2px 6px; border-radius: 4px;">QR KOD</span></h5>
+              <p>Kamerangizni qarating yoki bosing — mobil versiyada tezkor xarid qiling</p>
             </div>
           </div>
         </div>
@@ -258,6 +278,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/t1tan-petrol-beast.png" alt="T1tan Beast 3.0 Petrol Blue" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="t1tan-petrol" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Be The Titan Series</span>
@@ -277,6 +300,9 @@
               <button type="button" class="btn-add-cart" data-id="t1tan-petrol" data-name="T1tan Beast 3.0 Petrol Blue" data-price="1290000" data-image="images/t1tan-petrol-beast.png" data-brand="T1tan">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="t1tan-petrol" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-t1tan-petrol" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -290,6 +316,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/nike-phantom-orange-acc.png" alt="Nike Phantom Elite ACC Orange Volt" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="nike-phantom-acc" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Phantom Elite ACC</span>
@@ -309,6 +338,9 @@
               <button type="button" class="btn-add-cart" data-id="nike-phantom-acc" data-name="Nike Phantom Elite ACC Orange" data-price="1750000" data-image="images/nike-phantom-orange-acc.png" data-brand="Nike">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="nike-phantom-acc" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-nike-phantom-acc" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -322,6 +354,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/nike-vapor-black-volt.png" alt="Nike Vapor Grip 3 Black Volt" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="nike-vapor-volt" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Vapor Grip3 Line</span>
@@ -341,6 +376,9 @@
               <button type="button" class="btn-add-cart" data-id="nike-vapor-volt" data-name="Nike Vapor Grip 3 Black Volt" data-price="1620000" data-image="images/nike-vapor-black-volt.png" data-brand="Nike">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="nike-vapor-volt" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-nike-vapor-volt" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -354,6 +392,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/usport-speed-orange.png" alt="U Sport Speed Contact Fluo Orange" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="usport-speed-orange" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Speed Contact Series</span>
@@ -373,6 +414,9 @@
               <button type="button" class="btn-add-cart" data-id="usport-speed-orange" data-name="U Sport Speed Contact Fluo" data-price="1480000" data-image="images/usport-speed-orange.png" data-brand="U Sport">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="usport-speed-orange" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-usport-speed-orange" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -386,6 +430,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/usport-hyperflex-navy.png" alt="U Sport Hyperflex Absolutgrip Navy" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="usport-hyperflex" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Hyperflex Series</span>
@@ -405,6 +452,9 @@
               <button type="button" class="btn-add-cart" data-id="usport-hyperflex" data-name="U Sport Hyperflex Absolutgrip" data-price="1350000" data-image="images/usport-hyperflex-navy.png" data-brand="U Sport">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="usport-hyperflex" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-usport-hyperflex" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -418,6 +468,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/adidas-predator-ice-blue.png" alt="Adidas Predator Pro Ice Blue" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="adidas-ice-blue" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Predator 2026 Collection</span>
@@ -437,6 +490,9 @@
               <button type="button" class="btn-add-cart" data-id="adidas-ice-blue" data-name="Adidas Predator Pro Ice Blue" data-price="1720000" data-image="images/adidas-predator-ice-blue.png" data-brand="Adidas">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="adidas-ice-blue" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-adidas-ice-blue" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -450,6 +506,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/adidas-predator-solar-red.png" alt="Adidas Predator Pro Solar Red" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="adidas-solar-red" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Predator Match Edition</span>
@@ -469,6 +528,9 @@
               <button type="button" class="btn-add-cart" data-id="adidas-solar-red" data-name="Adidas Predator Solar Red" data-price="1850000" data-image="images/adidas-predator-solar-red.png" data-brand="Adidas">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="adidas-solar-red" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-adidas-solar-red" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -482,6 +544,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/t1tan-beast-blackout-neon.png" alt="T1tan Beast 3.0 Blackout Neon" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="t1tan-blackout" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Beast Blackout Edition</span>
@@ -501,6 +566,9 @@
               <button type="button" class="btn-add-cart" data-id="t1tan-blackout" data-name="T1tan Beast 3.0 Blackout" data-price="1320000" data-image="images/t1tan-beast-blackout-neon.png" data-brand="T1tan">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="t1tan-blackout" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-t1tan-blackout" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -514,6 +582,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/spire-phantom-cream-sand.png" alt="Spire Phantom Elite Sand" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="spire-cream-sand" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Phantom Elite Series</span>
@@ -533,6 +604,9 @@
               <button type="button" class="btn-add-cart" data-id="spire-cream-sand" data-name="Spire Phantom Elite Sand" data-price="950000" data-image="images/spire-phantom-cream-sand.png" data-brand="Spire">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="spire-cream-sand" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-spire-cream-sand" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -546,6 +620,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/spire-air-pro-black.png" alt="Spire Air Pro Black & White" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="spire-air-black" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Spire Air Series</span>
@@ -565,6 +642,9 @@
               <button type="button" class="btn-add-cart" data-id="spire-air-black" data-name="Spire Air Pro Black & White" data-price="990000" data-image="images/spire-air-pro-black.png" data-brand="Spire">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="spire-air-black" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-spire-air-black" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -578,6 +658,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/ks-hero-superglue-yellow.png" alt="KS Hero 4mm Super Glue Neon Yellow" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="ks-hero-yellow" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Hero Super Glue Line</span>
@@ -597,6 +680,9 @@
               <button type="button" class="btn-add-cart" data-id="ks-hero-yellow" data-name="KS Hero 4mm Super Glue Yellow" data-price="1380000" data-image="images/ks-hero-superglue-yellow.png" data-brand="KS Hero">
                 <span>+ Savatga</span>
               </button>
+              <button type="button" class="btn-action-video" data-video-id="ks-hero-yellow" title="Videoni ko'rish">
+                🎬 Video
+              </button>
               <a href="#modal-ks-hero-yellow" class="btn-details">Batafsil</a>
             </div>
           </div>
@@ -610,6 +696,9 @@
           </div>
           <div class="card-img-box">
             <img src="images/ks-hero-superglue-red.png" alt="KS Hero 4mm Super Glue Lava Red" loading="lazy">
+            <button type="button" class="btn-card-video-play" data-video-id="ks-hero-red" title="Videoni tomosha qilish">
+              <span class="play-icon">▶</span> <span>Video Sharh</span>
+            </button>
           </div>
           <div class="card-body">
             <span class="card-series">Hero Super Glue Line</span>
@@ -628,6 +717,9 @@
             <div class="card-actions">
               <button type="button" class="btn-add-cart" data-id="ks-hero-red" data-name="KS Hero 4mm Super Glue Red" data-price="1380000" data-image="images/ks-hero-superglue-red.png" data-brand="KS Hero">
                 <span>+ Savatga</span>
+              </button>
+              <button type="button" class="btn-action-video" data-video-id="ks-hero-red" title="Videoni ko'rish">
+                🎬 Video
               </button>
               <a href="#modal-ks-hero-red" class="btn-details">Batafsil</a>
             </div>
@@ -810,8 +902,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/t1tan-petrol-beast.png" alt="T1tan Beast 3.0 Petrol Blue">
+          <button type="button" class="btn-card-video-play" data-video-id="t1tan-petrol" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -830,6 +925,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 290 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="t1tan-petrol" data-name="T1tan Beast 3.0 Petrol Blue" data-price="1290000" data-image="images/t1tan-petrol-beast.png" data-brand="T1tan">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="t1tan-petrol">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -841,8 +937,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/nike-phantom-orange-acc.png" alt="Nike Phantom Elite ACC Orange">
+          <button type="button" class="btn-card-video-play" data-video-id="nike-phantom-acc" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -861,6 +960,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 750 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="nike-phantom-acc" data-name="Nike Phantom Elite ACC Orange" data-price="1750000" data-image="images/nike-phantom-orange-acc.png" data-brand="Nike">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="nike-phantom-acc">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -872,8 +972,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/nike-vapor-black-volt.png" alt="Nike Vapor Grip 3 Black Volt">
+          <button type="button" class="btn-card-video-play" data-video-id="nike-vapor-volt" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -891,6 +994,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 620 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="nike-vapor-volt" data-name="Nike Vapor Grip 3 Black Volt" data-price="1620000" data-image="images/nike-vapor-black-volt.png" data-brand="Nike">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="nike-vapor-volt">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -902,8 +1006,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/usport-speed-orange.png" alt="U Sport Speed Contact Fluo Orange">
+          <button type="button" class="btn-card-video-play" data-video-id="usport-speed-orange" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -921,6 +1028,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 480 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="usport-speed-orange" data-name="U Sport Speed Contact Fluo" data-price="1480000" data-image="images/usport-speed-orange.png" data-brand="U Sport">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="usport-speed-orange">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -932,8 +1040,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/usport-hyperflex-navy.png" alt="U Sport Hyperflex Absolutgrip Navy">
+          <button type="button" class="btn-card-video-play" data-video-id="usport-hyperflex" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -951,6 +1062,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 350 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="usport-hyperflex" data-name="U Sport Hyperflex Absolutgrip" data-price="1350000" data-image="images/usport-hyperflex-navy.png" data-brand="U Sport">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="usport-hyperflex">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -962,8 +1074,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/adidas-predator-ice-blue.png" alt="Adidas Predator Pro Ice Blue">
+          <button type="button" class="btn-card-video-play" data-video-id="adidas-ice-blue" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -982,6 +1097,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 720 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="adidas-ice-blue" data-name="Adidas Predator Pro Ice Blue" data-price="1720000" data-image="images/adidas-predator-ice-blue.png" data-brand="Adidas">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="adidas-ice-blue">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -993,8 +1109,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/adidas-predator-solar-red.png" alt="Adidas Predator Pro Solar Red">
+          <button type="button" class="btn-card-video-play" data-video-id="adidas-solar-red" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -1013,6 +1132,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 850 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="adidas-solar-red" data-name="Adidas Predator Solar Red" data-price="1850000" data-image="images/adidas-predator-solar-red.png" data-brand="Adidas">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="adidas-solar-red">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -1024,8 +1144,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/t1tan-beast-blackout-neon.png" alt="T1tan Beast 3.0 Blackout">
+          <button type="button" class="btn-card-video-play" data-video-id="t1tan-blackout" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -1043,6 +1166,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 320 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="t1tan-blackout" data-name="T1tan Beast 3.0 Blackout" data-price="1320000" data-image="images/t1tan-beast-blackout-neon.png" data-brand="T1tan">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="t1tan-blackout">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -1054,8 +1178,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/spire-phantom-cream-sand.png" alt="Spire Phantom Elite Sand">
+          <button type="button" class="btn-card-video-play" data-video-id="spire-cream-sand" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -1073,6 +1200,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">950 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="spire-cream-sand" data-name="Spire Phantom Elite Sand" data-price="950000" data-image="images/spire-phantom-cream-sand.png" data-brand="Spire">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="spire-cream-sand">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -1084,8 +1212,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/spire-air-pro-black.png" alt="Spire Air Pro Black">
+          <button type="button" class="btn-card-video-play" data-video-id="spire-air-black" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -1103,6 +1234,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">990 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="spire-air-black" data-name="Spire Air Pro Black & White" data-price="990000" data-image="images/spire-air-pro-black.png" data-brand="Spire">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="spire-air-black">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -1114,8 +1246,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/ks-hero-superglue-yellow.png" alt="KS Hero 4mm Super Glue Neon Yellow">
+          <button type="button" class="btn-card-video-play" data-video-id="ks-hero-yellow" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -1134,6 +1269,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 380 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="ks-hero-yellow" data-name="KS Hero 4mm Super Glue Yellow" data-price="1380000" data-image="images/ks-hero-superglue-yellow.png" data-brand="KS Hero">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="ks-hero-yellow">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -1145,8 +1281,11 @@
     <div class="modal-card">
       <a href="#katalog" class="modal-close-btn">&times;</a>
       <div class="modal-grid">
-        <div class="modal-img-wrap">
+        <div class="modal-img-wrap" style="position: relative;">
           <img src="images/ks-hero-superglue-red.png" alt="KS Hero 4mm Super Glue Lava Red">
+          <button type="button" class="btn-card-video-play" data-video-id="ks-hero-red" title="Videoni tomosha qilish">
+            <span class="play-icon">▶</span> <span>Video Sharh</span>
+          </button>
         </div>
         <div>
           <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px;">
@@ -1165,6 +1304,7 @@
           </div>
           <div style="font-size: 20px; font-weight: 900; color: #fff; margin-bottom: 12px;">1 380 000 so'm</div>
           <button type="button" class="btn-modal-cart" data-id="ks-hero-red" data-name="KS Hero 4mm Super Glue Red" data-price="1380000" data-image="images/ks-hero-superglue-red.png" data-brand="KS Hero">🛒 Savatga qo'shish</button>
+          <button type="button" class="btn-modal-video" data-video-id="ks-hero-red">🎬 Model Video Sharhini Ko'rish</button>
           <a href="#buyurtma" class="btn-primary" style="display: block; text-align: center; margin-top: 8px;">Buyurtma Berish</a>
         </div>
       </div>
@@ -1228,6 +1368,16 @@
             <a href="#buyurtma">Yetkazib Berish va To'lov</a>
           </div>
         </div>
+
+        <div>
+          <h5 class="footer-col-title">📱 Mobil Do'kon</h5>
+          <div class="footer-qr-card" data-open-qr style="cursor: pointer;" title="Kattalashtirish uchun bosing">
+            <div class="footer-qr-box" id="footer-qr-box">
+              <!-- SVG QR kod -->
+            </div>
+            <p>Smartfoningizda ochish uchun skan qiling</p>
+          </div>
+        </div>
       </div>
 
       <div class="footer-bottom">
@@ -1238,7 +1388,17 @@
     </div>
   </footer>
 
+  <!-- Suzuvchi QR Kod Tugmasi (Pastki chap burchakda) -->
+  <button type="button" class="floating-qr-btn" data-open-qr aria-label="Smartfon orqali kirish (QR Kod)" title="QR Kod orqali smartfonda ochish">
+    <span>📱</span>
+    <span class="floating-qr-tooltip">Mobil QR Kod</span>
+  </button>
+
   <!-- Savat va To'liq Summa Skripti -->
   <script src="js/cart.js"></script>
+  <!-- Har bir qo'lqop uchun video pleer skripti -->
+  <script src="js/video.js"></script>
+  <!-- QR Kod va Mobil Skaner Skripti -->
+  <script src="js/qr.js"></script>
 </body>
 </html>

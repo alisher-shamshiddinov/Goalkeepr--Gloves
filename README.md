@@ -1,10 +1,42 @@
 # 🧤 KEEPERZONE — Darvozabonlar Qo'lqoplari Do'koni
 
-Darvozabonlar uchun professional qo'lqoplar internet-do'koni. **12 ta haqiqiy fotosuratli professional modellar**, qulay **Interaktiv Savat (Shopping Cart)** va **To'liq Summa (Total Price)** hisoblash tizimi bilan to'liq jihozlangan.
+Darvozabonlar uchun professional qo'lqoplar internet-do'koni. **12 ta haqiqiy fotosuratli professional modellar**, **Har bir model uchun maxsus video sharh (Glove Review & Grip Test)**, **Smartfon orqali tezkor kirish uchun interaktiv QR Kod tizimi**, qulay **Interaktiv Savat (Shopping Cart)** va **To'liq Summa (Total Price)** hisoblash tizimi bilan to'liq jihozlangan.
 
 ---
 
-## 🛒 Yangi Savat va To'liq Summa Imkoniyatlari:
+## 📱 Yangi: Smartfondan Kirish Uchun QR Kod Tizimi:
+1. **Navbardagi QR Kod tugmasi**:
+   - Tepada joylashgan `📱 QR Kod` tugmasi orqali istalgan paytda to'liq o'lchamli QR kod oynasi ochiladi.
+2. **Hero blokidagi QR Skaner vidjeti**:
+   - Bosh sahifa boshida smartfon orqali darhol saytga ulanish imkonini beruvchi ixcham QR kodli vizual blok.
+3. **Pastki chapdagi suzuvchi (Floating) QR tugmasi**:
+   - Sahifa bo'ylab qayerda bo'lsangiz ham bitta bosish bilan QR kodni ko'rish imkoniyati.
+4. **Footer dagi QR Kod kartasi**:
+   - Sahifa pastki qismida smartfon kamerasini to'g'ridan-to'g'ri ekranga qaratib skanerlash uchun statik QR modul.
+5. **QR Kod Interaktiv Modali**:
+   - Tiniq, sifatli QR kod (markazida do'kon ramzi `🧤` bilan).
+   - "Havolani nusxalash" (`Copy Link`) tugmasi.
+   - "QR Kodni yuklab olish" (`.svg` formatda saqlash) tugmasi.
+   - Joriy URL ga moslashuvchan dinamik generatsiya algoritmi.
+
+---
+
+## 🎥 Har Bir Qo'lqop Uchun Video Sharh (Video Reviews & Grip Tests):
+1. **Har bir kartochkada video tugmalari**:
+   - Rasm ustida qulay suzuvchi `▶ Video Sharh` nishoni va harakatlar qatorida `🎬 Video` tugmasi.
+2. **Batafsil ma'lumot modalida**:
+   - Fotosurat ustida va ma'lumotlar ostida `🎬 Model Video Sharhini Ko'rish` maxsus tugmasi.
+3. **Zamonaviy kinoteatr uslubidagi Video Player Modal**:
+   - Bosilganda to'liq ekranli 16:9 HD video pleer ochiladi.
+   - Avtomatik ravishda tegishli modelning unboxing, lateks lateks yopishqoqligi sinovi va zarba qaytarish video lavhalari o'ynatiladi.
+   - Video modal ichida model nomi, brendi, narxi va bevosita `🛒 Savatga qo'shish` tugmasi mavjud.
+   - "X" tugmasi, tashqi fon yoki Escape tugmasi bosilganda video avtomatik to'xtaydi (ovoz qolib ketmaydi).
+4. **Moslashuvchan tizim**:
+   - `js/video.js` orqali YouTube yoki istalgan mahalliy `.mp4` video fayllarini bir zumda almashtirish mumkin.
+
+---
+
+## 🛒 Savat va To'liq Summa Imkoniyatlari:
 1. **Har bir mahsulotda "Savatga" tugmasi**:
    - Katalogdagi har bir qo'lqop kartochkasida va batafsil ko'rish modalida `+ Savatga` / `🛒 Savatga qo'shish` tugmalari mavjud.
 2. **Navbardagi Savat ko'rsatkichi**:
