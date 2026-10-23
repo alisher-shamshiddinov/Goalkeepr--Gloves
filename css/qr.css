@@ -1,15 +1,16 @@
 /* ==========================================================================
-   KEEPERZONE — QR KOD STYLLARI (QR CODE & MOBILE SCANNER UI)
+   KEEPERZONE — TEZKOR QR KOD VA MOBIL SKANER STYLLARI
+   100% Standart, zamonaviy va mobil moslashuvchan UI
    ========================================================================== */
 
-/* Navbar QR Button */
+/* Navbar QR Tugmasi */
 .nav-qr-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  gap: 7px;
   padding: 8px 14px;
   background: rgba(30, 41, 59, 0.7);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  border: 1px solid rgba(16, 185, 129, 0.4);
   border-radius: 10px;
   color: #e2e8f0;
   font-size: 13px;
@@ -20,18 +21,18 @@
 }
 
 .nav-qr-btn:hover {
-  background: rgba(16, 185, 129, 0.15);
+  background: rgba(16, 185, 129, 0.2);
   border-color: #10b981;
   color: #10b981;
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.25);
 }
 
 .nav-qr-btn .qr-icon {
   font-size: 15px;
 }
 
-/* Floating Quick QR Button (pastki chap burchakda) */
+/* Floating Quick QR Button (Pastki chap burchakda) */
 .floating-qr-btn {
   position: fixed;
   bottom: 24px;
@@ -53,10 +54,10 @@
 }
 
 .floating-qr-btn:hover {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.1) rotate(6deg);
   background: #10b981;
   color: #0b0f19;
-  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.55);
 }
 
 .floating-qr-tooltip {
@@ -82,13 +83,13 @@
   transform: translateX(0);
 }
 
-/* Hero QR Badge / Mobile Quick Card */
+/* Hero QR Vidjeti */
 .hero-qr-badge {
   display: flex;
   align-items: center;
   gap: 14px;
   background: rgba(15, 23, 42, 0.85);
-  border: 1px solid rgba(16, 185, 129, 0.3);
+  border: 1px solid rgba(16, 185, 129, 0.35);
   border-radius: 14px;
   padding: 10px 16px;
   margin-top: 18px;
@@ -102,51 +103,51 @@
   border-color: #10b981;
   background: rgba(15, 23, 42, 0.95);
   transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.25);
 }
 
 .hero-qr-thumb {
-  width: 54px;
-  height: 54px;
-  background: #fff;
-  padding: 4px;
+  width: 56px;
+  height: 56px;
+  min-width: 56px;
+  background: #ffffff;
+  padding: 3px;
   border-radius: 8px;
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
-.hero-qr-thumb svg,
-.hero-qr-thumb img {
+.hero-qr-thumb svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
 .hero-qr-info h5 {
+  margin: 0 0 3px;
   font-size: 13px;
-  font-weight: 800;
   color: #fff;
-  margin-bottom: 2px;
+  font-weight: 800;
   display: flex;
   align-items: center;
   gap: 6px;
 }
 
 .hero-qr-info p {
-  font-size: 11px;
-  color: var(--text-muted);
-  line-height: 1.4;
   margin: 0;
+  font-size: 11px;
+  color: #94a3b8;
+  line-height: 1.3;
 }
 
-/* Footer QR Card */
+/* Footer QR Blok */
 .footer-qr-card {
-  background: rgba(15, 23, 42, 0.8);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
   padding: 14px;
   display: flex;
   flex-direction: column;
@@ -154,22 +155,29 @@
   text-align: center;
   gap: 10px;
   max-width: 180px;
+  transition: all 0.25s ease;
+}
+
+.footer-qr-card:hover {
+  border-color: rgba(16, 185, 129, 0.5);
+  background: rgba(15, 23, 42, 0.85);
+  transform: translateY(-2px);
 }
 
 .footer-qr-box {
   width: 120px;
   height: 120px;
   background: #fff;
-  padding: 8px;
+  padding: 6px;
   border-radius: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
 }
 
-.footer-qr-box svg,
-.footer-qr-box img {
+.footer-qr-box svg {
   width: 100%;
   height: 100%;
   display: block;
@@ -177,7 +185,7 @@
 
 .footer-qr-card p {
   font-size: 11px;
-  color: var(--text-muted);
+  color: #94a3b8;
   line-height: 1.4;
   margin: 0;
 }
@@ -188,9 +196,9 @@
 .qr-modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(3, 7, 18, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(3, 7, 18, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
   z-index: 100000;
   display: flex;
   align-items: center;
@@ -208,12 +216,12 @@
 
 .qr-modal-card {
   background: #0b1120;
-  border: 1px solid rgba(16, 185, 129, 0.35);
-  border-radius: 20px;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  border-radius: 22px;
   width: 100%;
   max-width: 440px;
-  padding: 28px 24px;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(16, 185, 129, 0.2);
+  padding: 26px 22px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95), 0 0 35px rgba(16, 185, 129, 0.25);
   transform: scale(0.92) translateY(12px);
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   position: relative;
@@ -226,8 +234,8 @@
 
 .qr-modal-close {
   position: absolute;
-  top: 16px;
-  right: 16px;
+  top: 14px;
+  right: 14px;
   width: 34px;
   height: 34px;
   border-radius: 50%;
@@ -252,78 +260,172 @@
 .qr-modal-badge {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
+  gap: 7px;
+  padding: 5px 12px;
   background: rgba(16, 185, 129, 0.15);
-  border: 1px solid rgba(16, 185, 129, 0.35);
+  border: 1px solid rgba(16, 185, 129, 0.4);
   color: #10b981;
   border-radius: 20px;
   font-size: 11px;
   font-weight: 800;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
+}
+
+.qr-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 8px #10b981;
+  animation: qrPulse 1.6s infinite ease-in-out;
+}
+
+@keyframes qrPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.4); }
 }
 
 .qr-modal-title {
-  font-size: 20px;
+  font-size: 21px;
   font-weight: 900;
   color: #fff;
-  margin-bottom: 6px;
+  margin: 0 0 4px;
+  letter-spacing: -0.3px;
 }
 
 .qr-modal-subtitle {
   font-size: 12px;
-  color: var(--text-muted);
+  color: #94a3b8;
   line-height: 1.5;
-  margin-bottom: 20px;
+  margin: 0 0 14px;
 }
 
-/* Katta QR kod ramkasi */
-.qr-modal-display {
+.qr-modal-subtitle strong {
+  color: #10b981;
+}
+
+/* Toolbar */
+.qr-quick-toolbar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.qr-tool-btn {
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 5px 10px;
+  border-radius: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.2s ease;
+}
+
+.qr-tool-btn:hover {
+  background: rgba(30, 41, 59, 0.9);
+  color: #fff;
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+.qr-tool-btn.is-active {
+  background: rgba(16, 185, 129, 0.18);
+  border-color: #10b981;
+  color: #10b981;
+}
+
+/* Katta QR ramkasi */
+.qr-modal-display-wrapper {
   position: relative;
-  width: 220px;
-  height: 220px;
+  width: 226px;
+  height: 226px;
+  margin: 0 auto 16px;
+  border-radius: 18px;
+  padding: 10px;
   background: #ffffff;
-  padding: 14px;
-  border-radius: 16px;
-  margin: 0 auto 20px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(16, 185, 129, 0.3);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(16, 185, 129, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.qr-modal-display {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.qr-modal-display svg,
-.qr-modal-display img,
-.qr-modal-display canvas {
+.qr-modal-display svg {
   width: 100%;
   height: 100%;
   display: block;
 }
 
-/* QR markazidagi logotip / nishon */
+/* Skaner lazer nuri */
+.qr-scanner-laser {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #10b981 30%, #34d399 50%, #10b981 70%, transparent);
+  box-shadow: 0 0 12px #10b981, 0 0 20px #34d399;
+  border-radius: 2px;
+  animation: laserScan 2.4s ease-in-out infinite alternate;
+  pointer-events: none;
+  z-index: 5;
+}
+
+@keyframes laserScan {
+  0% {
+    top: 12px;
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% - 15px);
+    opacity: 0.8;
+  }
+}
+
+/* Markazdagi ixcham brend logosi */
 .qr-center-badge {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   background: #0b1120;
-  border: 2px solid #10b981;
-  border-radius: 10px;
+  border: 3px solid #ffffff;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+  font-size: 18px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), 0 0 0 1px #10b981;
+  z-index: 10;
+  user-select: none;
+  pointer-events: none;
 }
 
+/* Havola qutisi */
 .qr-url-box {
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.85);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 10px;
+  border-radius: 12px;
   padding: 8px 12px;
   display: flex;
   align-items: center;
@@ -332,9 +434,24 @@
   margin-bottom: 16px;
 }
 
+.qr-url-info {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-width: 0;
+  flex: 1;
+}
+
+.qr-url-label {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
 .qr-url-text {
   font-size: 11px;
-  color: #94a3b8;
+  color: #cbd5e1;
   font-family: monospace;
   white-space: nowrap;
   overflow: hidden;
@@ -342,9 +459,43 @@
   text-align: left;
 }
 
+.qr-url-input {
+  width: 100%;
+  background: #0b1120;
+  border: 1px solid #10b981;
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: #fff;
+  font-size: 11px;
+  font-family: monospace;
+  outline: none;
+}
+
+.qr-url-actions {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.btn-url-tool {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  padding: 4px 7px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-url-tool:hover {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: #10b981;
+}
+
 .btn-copy-url {
   background: rgba(16, 185, 129, 0.2);
-  border: 1px solid rgba(16, 185, 129, 0.4);
+  border: 1px solid rgba(16, 185, 129, 0.45);
   color: #10b981;
   padding: 4px 10px;
   border-radius: 6px;
@@ -360,17 +511,16 @@
   color: #0b0f19;
 }
 
+/* Harakat tugmalari */
 .qr-modal-actions {
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  align-items: center;
 }
 
 .btn-qr-download {
   flex: 1;
-  padding: 10px 16px;
-  background: #10b981;
-  color: #041009;
-  border: none;
+  padding: 10px 12px;
   border-radius: 10px;
   font-size: 12px;
   font-weight: 800;
@@ -378,29 +528,109 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
   transition: all 0.2s ease;
+  border: none;
 }
 
-.btn-qr-download:hover {
+.btn-qr-png {
+  background: #10b981;
+  color: #041009;
+}
+
+.btn-qr-png:hover {
   background: #34d399;
   transform: translateY(-1px);
-  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35);
+  box-shadow: 0 4px 15px rgba(16, 185, 129, 0.4);
 }
 
-.btn-qr-close-action {
-  padding: 10px 18px;
+.btn-qr-svg {
   background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+}
+
+.btn-qr-svg:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: #10b981;
+}
+
+.btn-open-link {
+  padding: 10px 14px;
+  background: rgba(30, 41, 59, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 10px;
-  color: #e2e8f0;
+  color: #94a3b8;
   font-size: 12px;
   font-weight: 700;
-  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   transition: all 0.2s ease;
 }
 
-.btn-qr-close-action:hover {
-  background: rgba(255, 255, 255, 0.1);
+.btn-open-link:hover {
+  background: rgba(16, 185, 129, 0.15);
+  color: #10b981;
+  border-color: #10b981;
+}
+
+/* Toast Bildirishnoma */
+.qr-toast-notice {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  background: #0b1120;
+  border: 1px solid #10b981;
   color: #fff;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.8), 0 0 15px rgba(16, 185, 129, 0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 100002;
+  pointer-events: none;
+}
+
+.qr-toast-notice.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Mobil moslashuvchanlik */
+@media (max-width: 640px) {
+  .qr-modal-card {
+    padding: 22px 16px;
+    max-width: 92%;
+  }
+
+  .qr-modal-display-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+
+  .qr-modal-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .btn-qr-download,
+  .btn-open-link {
+    width: 100%;
+  }
+
+  .floating-qr-btn {
+    bottom: 18px;
+    left: 18px;
+    width: 46px;
+    height: 46px;
+    font-size: 19px;
+  }
 }

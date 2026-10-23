@@ -1,150 +1,148 @@
 /**
- * KEEPERZONE — QR Kod Boshqaruv Tizimi (Mobile Scanner & QR Code Generator)
+ * KEEPERZONE — Tezkor QR Kod Tizimi (Instant QR Code & Scanner)
+ * Foydalanuvchi QR kodi (images/qr-code.png) va dinamik QR generator integratsiyasi.
  */
 
 (function () {
   'use strict';
 
-  // Standart do'kon domeni / havolasi
-  const DEFAULT_SITE_URL = window.location.protocol.startsWith('http') 
-    ? window.location.href 
-    : 'https://keeperzone.uz';
+  // Foydalanuvchi taqdim etgan original QR kod rasmi
+  const ORIGINAL_QR_IMAGE = 'images/qr-code.png';
 
-  // Minimal va mustaqil QR kod matritsa algoritmi (Reed-Solomon / QR Matrix Generator)
-  // Oflayn rejimda ham 100% ishlaydi
-  function generateQRCodeSVG(text, size = 200) {
-    // UTF-8 baytlar
-    const utf8Bytes = [];
-    for (let i = 0; i < text.length; i++) {
-      let code = text.charCodeAt(i);
-      if (code < 0x80) {
-        utf8Bytes.push(code);
-      } else if (code < 0x800) {
-        utf8Bytes.push(0xc0 | (code >> 6));
-        utf8Bytes.push(0x80 | (code & 0x3f));
-      } else if (code < 0xd800 || code >= 0xe000) {
-        utf8Bytes.push(0xe0 | (code >> 12));
-        utf8Bytes.push(0x80 | ((code >> 6) & 0x3f));
-        utf8Bytes.push(0x80 | (code & 0x3f));
-      }
+  // Standart QR havolasi (Netlify jonli sayt domeni)
+  const DEFAULT_SITE_URL = 'https://goalkeeprgloves.netlify.app';
+
+  let currentQRUrl = DEFAULT_SITE_URL;
+  let isCustomUrl = false; // Foydalanuvchi havolani tahrirladimi?
+  let showLaser = true;
+
+  /**
+   * Standart QR kod SVG yaratish (dinamik holat uchun)
+   */
+  function generateQRCodeSVG(text, size = 200, ecc = 'M') {
+    if (typeof qrcode !== 'function') {
+      return `<img src="${ORIGINAL_QR_IMAGE}" alt="QR Kod" style="width:100%; height:100%; object-fit:contain;" />`;
     }
 
-    // QR Code versiyasi va matritsa o'lchami (25x25)
-    const modulesCount = 25;
-    const matrix = Array.from({ length: modulesCount }, () => Array(modulesCount).fill(false));
-    const isReserved = Array.from({ length: modulesCount }, () => Array(modulesCount).fill(false));
+    try {
+      const qr = qrcode(0, ecc);
+      qr.addData(text || DEFAULT_SITE_URL, 'Byte');
+      qr.make();
 
-    function setFinderPattern(row, col) {
-      for (let r = -1; r <= 7; r++) {
-        for (let c = -1; c <= 7; c++) {
-          const mr = row + r;
-          const mc = col + c;
-          if (mr >= 0 && mr < modulesCount && mc >= 0 && mc < modulesCount) {
-            isReserved[mr][mc] = true;
-            if (
-              (r >= 0 && r <= 6 && (c === 0 || c === 6)) ||
-              (c >= 0 && c <= 6 && (r === 0 || r === 6)) ||
-              (r >= 2 && r <= 4 && c >= 2 && c <= 4)
-            ) {
-              matrix[mr][mc] = true;
-            } else {
-              matrix[mr][mc] = false;
-            }
+      const moduleCount = qr.getModuleCount();
+      const margin = 2;
+      const totalModules = moduleCount + margin * 2;
+      const cellSize = size / totalModules;
+
+      let pathData = '';
+      for (let r = 0; r < moduleCount; r++) {
+        for (let c = 0; c < moduleCount; c++) {
+          if (qr.isDark(r, c)) {
+            const x = (c + margin) * cellSize;
+            const y = (r + margin) * cellSize;
+            pathData += `M${x.toFixed(2)},${y.toFixed(2)}h${cellSize.toFixed(2)}v${cellSize.toFixed(2)}h-${cellSize.toFixed(2)}z `;
           }
         }
       }
+
+      return `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" shape-rendering="crispEdges">
+          <rect width="100%" height="100%" fill="#ffffff" rx="10"/>
+          <path d="${pathData}" fill="#0b1120"/>
+        </svg>
+      `;
+    } catch (e) {
+      console.error('QR yaratishda xatolik:', e);
+      return `<img src="${ORIGINAL_QR_IMAGE}" alt="QR Kod" style="width:100%; height:100%; object-fit:contain;" />`;
     }
-
-    // 3 ta Finder pattern (burchaklar)
-    setFinderPattern(0, 0);
-    setFinderPattern(0, modulesCount - 7);
-    setFinderPattern(modulesCount - 7, 0);
-
-    // Alignment pattern (kichik kvadrat)
-    const alignRow = 18;
-    const alignCol = 18;
-    for (let r = -2; r <= 2; r++) {
-      for (let c = -2; c <= 2; c++) {
-        const mr = alignRow + r;
-        const mc = alignCol + c;
-        isReserved[mr][mc] = true;
-        if (Math.abs(r) === 2 || Math.abs(c) === 2 || (r === 0 && c === 0)) {
-          matrix[mr][mc] = true;
-        } else {
-          matrix[mr][mc] = false;
-        }
-      }
-    }
-
-    // Timing patterns
-    for (let i = 8; i < modulesCount - 8; i++) {
-      matrix[6][i] = (i % 2 === 0);
-      isReserved[6][i] = true;
-      matrix[i][6] = (i % 2 === 0);
-      isReserved[i][6] = true;
-    }
-
-    // Pseudorandom pseudo-data hashing to ensure valid scannable matrix pattern
-    let hash = 2166136261;
-    for (let i = 0; i < utf8Bytes.length; i++) {
-      hash ^= utf8Bytes[i];
-      hash = Math.imul(hash, 16777619);
-    }
-
-    let seed = hash >>> 0;
-    function nextBit() {
-      seed = (seed * 1664525 + 1013904223) >>> 0;
-      return (seed & 1) === 1;
-    }
-
-    // Modullarni to'ldirish
-    let bitIdx = 0;
-    for (let c = modulesCount - 1; c > 0; c -= 2) {
-      if (c === 6) c--; // Timing pattern
-      for (let r = 0; r < modulesCount; r++) {
-        const actualRow = ((c + 1) / 2) % 2 === 0 ? r : modulesCount - 1 - r;
-        for (let colOffset = 0; colOffset < 2; colOffset++) {
-          const col = c - colOffset;
-          if (!isReserved[actualRow][col]) {
-            let bit;
-            if (bitIdx < utf8Bytes.length * 8) {
-              const byte = utf8Bytes[Math.floor(bitIdx / 8)];
-              bit = ((byte >> (7 - (bitIdx % 8))) & 1) === 1;
-              bitIdx++;
-            } else {
-              bit = nextBit();
-            }
-            // Mask pattern (row + col) % 2 === 0
-            const mask = (actualRow + col) % 2 === 0;
-            matrix[actualRow][col] = bit ^ mask;
-          }
-        }
-      }
-    }
-
-    // SVG string hosil qilish
-    const cellSize = (size / modulesCount).toFixed(2);
-    let rects = '';
-    for (let r = 0; r < modulesCount; r++) {
-      for (let c = 0; c < modulesCount; c++) {
-        if (matrix[r][c]) {
-          rects += `<rect x="${(c * cellSize).toFixed(2)}" y="${(r * cellSize).toFixed(2)}" width="${cellSize}" height="${cellSize}" fill="#0b1120" rx="0.5"/>`;
-        }
-      }
-    }
-
-    return `
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" shape-rendering="crispEdges">
-        <rect width="${size}" height="${size}" fill="#ffffff" rx="8"/>
-        ${rects}
-      </svg>
-    `;
   }
 
-  // QR Modal DOM elementlari
+  /**
+   * PNG formatda QR kodni yuklab olish
+   */
+  function downloadPNG() {
+    if (!isCustomUrl) {
+      // Original sifatli QR rasmini yuklab olish
+      const a = document.createElement('a');
+      a.href = ORIGINAL_QR_IMAGE;
+      a.download = 'keeperzone-qr.png';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      showToast('✓ Original QR Kod (PNG) yuklab olindi!');
+      return;
+    }
+
+    // Agar havola o'zgartirilgan bo'lsa, canvas orqali yangi PNG yaratamiz
+    if (typeof qrcode === 'function') {
+      try {
+        const qr = qrcode(0, 'M');
+        qr.addData(currentQRUrl, 'Byte');
+        qr.make();
+        const moduleCount = qr.getModuleCount();
+        const margin = 3;
+        const totalModules = moduleCount + margin * 2;
+        const size = 640;
+        const canvas = document.createElement('canvas');
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = '#ffffff';
+        ctx.fillRect(0, 0, size, size);
+
+        const cellSize = size / totalModules;
+        ctx.fillStyle = '#0b1120';
+        for (let r = 0; r < moduleCount; r++) {
+          for (let c = 0; c < moduleCount; c++) {
+            if (qr.isDark(r, c)) {
+              ctx.fillRect(
+                Math.round((c + margin) * cellSize),
+                Math.round((r + margin) * cellSize),
+                Math.ceil(cellSize),
+                Math.ceil(cellSize)
+              );
+            }
+          }
+        }
+
+        const dataUrl = canvas.toDataURL('image/png');
+        const link = document.createElement('a');
+        link.href = dataUrl;
+        link.download = 'keeperzone-qr.png';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        showToast('✓ Yangilangan QR Kod (PNG) yuklab olindi!');
+      } catch (e) {
+        console.error('Canvas export error:', e);
+      }
+    }
+  }
+
+  // Toast bildirishnoma
+  function showToast(msg) {
+    let toast = document.getElementById('qr-toast-notice');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'qr-toast-notice';
+      toast.className = 'qr-toast-notice';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toast._timeout);
+    toast._timeout = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2400);
+  }
+
+  // Modal elementlari
   let qrModal = null;
   let qrDisplay = null;
   let qrUrlText = null;
+  let qrUrlInput = null;
+  let laserLine = null;
 
   function initQRModal() {
     if (document.getElementById('global-qr-modal')) return;
@@ -154,32 +152,56 @@
         <div class="qr-modal-card">
           <button type="button" class="qr-modal-close" id="qr-modal-close" aria-label="Yopish">&times;</button>
           
-          <div class="qr-modal-badge">
-            <span>📱</span> Tezkor Skaner
-          </div>
-          
-          <h3 class="qr-modal-title">Mobil Do'konga Kirish</h3>
-          <p class="qr-modal-subtitle">
-            Smartfon kamerangizni QR kodga qarating va to'g'ridan-to'g'ri telefoningizda qulay xarid qiling!
-          </p>
-
-          <div class="qr-modal-display" id="qr-modal-display">
-            <!-- SVG QR shu yerga tushadi -->
-            <div class="qr-center-badge">🧤</div>
+          <div class="qr-modal-header">
+            <div class="qr-modal-badge">
+              <span class="qr-pulse-dot"></span>
+              <span>⚡ Tezkor QR Tizimi</span>
+            </div>
+            <h3 class="qr-modal-title">Mobil Do'konga Kirish</h3>
+            <p class="qr-modal-subtitle">
+              Smartfoningiz kamerasini QR kodga qarating — sahifa <strong>bir lahzada</strong> ochiladi!
+            </p>
           </div>
 
+          <!-- Tezkor Asboblar -->
+          <div class="qr-quick-toolbar">
+            <button type="button" class="qr-tool-btn is-active" id="btn-toggle-laser" title="Skaner animatsiyasini yoqish/o'chirish">
+              <span class="icon">⚡</span> <span class="label">Skaner nuri</span>
+            </button>
+            <button type="button" class="qr-tool-btn" id="btn-reset-qr" title="Asl QR kodni tiklash">
+              <span class="icon">🔄</span> <span class="label">Asl QR Kod</span>
+            </button>
+          </div>
+
+          <!-- QR Kod Vitrinasi -->
+          <div class="qr-modal-display-wrapper">
+            <div class="qr-modal-display" id="qr-modal-display">
+              <img id="qr-main-image" src="${ORIGINAL_QR_IMAGE}" alt="Do'kon QR Kodi" style="width:100%; height:100%; object-fit:contain; border-radius:10px; display:block;" />
+            </div>
+            <div class="qr-scanner-laser" id="qr-scanner-laser"></div>
+          </div>
+
+          <!-- Havola qatori va tahrirlash -->
           <div class="qr-url-box">
-            <span class="qr-url-text" id="qr-url-text">${DEFAULT_SITE_URL}</span>
-            <button type="button" class="btn-copy-url" id="btn-copy-url">Nusxalash</button>
+            <div class="qr-url-info">
+              <span class="qr-url-label">Havola:</span>
+              <span class="qr-url-text" id="qr-url-text" title="${DEFAULT_SITE_URL}">${DEFAULT_SITE_URL}</span>
+              <input type="text" class="qr-url-input" id="qr-url-input" value="${DEFAULT_SITE_URL}" style="display:none;" placeholder="https://..." />
+            </div>
+            <div class="qr-url-actions">
+              <button type="button" class="btn-url-tool" id="btn-edit-url" title="Havolani o'zgartirish">✏️</button>
+              <button type="button" class="btn-copy-url" id="btn-copy-url">Nusxalash</button>
+            </div>
           </div>
 
+          <!-- Asosiy Harakatlar -->
           <div class="qr-modal-actions">
-            <button type="button" class="btn-qr-download" id="btn-download-qr">
-              <span>⬇ QR Kodni Yuklab Olish</span>
+            <button type="button" class="btn-qr-download btn-qr-png" id="btn-download-png">
+              <span>📥 QR Kodni Yuklab Olish</span>
             </button>
-            <button type="button" class="btn-qr-close-action" id="btn-qr-close-action">
-              Yopish
-            </button>
+            <a href="${DEFAULT_SITE_URL}" target="_blank" rel="noopener noreferrer" class="btn-open-link" id="btn-open-link" title="Brauzerda yangi tabda ochish">
+              <span>🌐 Ochish</span>
+            </a>
           </div>
         </div>
       </div>
@@ -190,13 +212,11 @@
     qrModal = document.getElementById('global-qr-modal');
     qrDisplay = document.getElementById('qr-modal-display');
     qrUrlText = document.getElementById('qr-url-text');
-
-    // QR SVG render
-    renderMainQR();
+    qrUrlInput = document.getElementById('qr-url-input');
+    laserLine = document.getElementById('qr-scanner-laser');
 
     // Hodisalar
     document.getElementById('qr-modal-close').addEventListener('click', closeQRModal);
-    document.getElementById('btn-qr-close-action').addEventListener('click', closeQRModal);
     qrModal.addEventListener('click', function (e) {
       if (e.target === qrModal) closeQRModal();
     });
@@ -207,46 +227,102 @@
       }
     });
 
-    // Nusxalash hodisasi
+    // Lazer nuri
+    const laserBtn = document.getElementById('btn-toggle-laser');
+    laserBtn.addEventListener('click', function () {
+      showLaser = !showLaser;
+      this.classList.toggle('is-active', showLaser);
+      if (laserLine) laserLine.style.display = showLaser ? 'block' : 'none';
+    });
+
+    // Asl QR kodni tiklash
+    document.getElementById('btn-reset-qr').addEventListener('click', function () {
+      isCustomUrl = false;
+      currentQRUrl = DEFAULT_SITE_URL;
+      if (qrUrlText) qrUrlText.textContent = DEFAULT_SITE_URL;
+      if (qrUrlInput) qrUrlInput.value = DEFAULT_SITE_URL;
+      const openLink = document.getElementById('btn-open-link');
+      if (openLink) openLink.href = DEFAULT_SITE_URL;
+      renderQR();
+      showToast('✓ Asl QR kod tiklandi');
+    });
+
+    // Tahrirlash
+    const editBtn = document.getElementById('btn-edit-url');
+    editBtn.addEventListener('click', function () {
+      if (qrUrlInput.style.display === 'none') {
+        qrUrlText.style.display = 'none';
+        qrUrlInput.style.display = 'block';
+        qrUrlInput.focus();
+        qrUrlInput.select();
+        editBtn.textContent = '💾';
+      } else {
+        const val = qrUrlInput.value.trim() || DEFAULT_SITE_URL;
+        updateCustomUrl(val);
+        qrUrlInput.style.display = 'none';
+        qrUrlText.style.display = 'block';
+        editBtn.textContent = '✏️';
+      }
+    });
+
+    qrUrlInput.addEventListener('input', function () {
+      updateCustomUrl(this.value.trim() || DEFAULT_SITE_URL);
+    });
+
+    qrUrlInput.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter') editBtn.click();
+    });
+
+    // Nusxalash
     document.getElementById('btn-copy-url').addEventListener('click', function () {
-      const url = qrUrlText.textContent;
-      navigator.clipboard.writeText(url).then(() => {
-        const btn = document.getElementById('btn-copy-url');
-        btn.textContent = '✓ Nusxalandi!';
-        setTimeout(() => {
-          btn.textContent = 'Nusxalash';
-        }, 2000);
-      }).catch(() => {
-        alert("Havola: " + url);
-      });
+      const url = currentQRUrl;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(() => {
+          showToast('✓ Havola nusxalandi!');
+        }).catch(() => fallbackCopy(url));
+      } else {
+        fallbackCopy(url);
+      }
     });
 
-    // Yuklab olish hodisasi
-    document.getElementById('btn-download-qr').addEventListener('click', function () {
-      const svgElement = qrDisplay.querySelector('svg');
-      if (!svgElement) return;
+    function fallbackCopy(url) {
+      const tempInput = document.createElement('input');
+      tempInput.value = url;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      showToast('✓ Havola nusxalandi!');
+    }
 
-      const svgData = new XMLSerializer().serializeToString(svgElement);
-      const svgBlob = new Blob([svgData], { type: 'image/svg+xml;charset=utf-8' });
-      const svgUrl = URL.createObjectURL(svgBlob);
-      const downloadLink = document.createElement('a');
-      downloadLink.href = svgUrl;
-      downloadLink.download = 'keeperzone-qr-kod.svg';
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-      URL.revokeObjectURL(svgUrl);
-    });
+    // Yuklab olish
+    document.getElementById('btn-download-png').addEventListener('click', downloadPNG);
   }
 
-  function renderMainQR() {
+  function updateCustomUrl(url) {
+    currentQRUrl = url;
+    isCustomUrl = (url !== DEFAULT_SITE_URL);
+    if (qrUrlText) {
+      qrUrlText.textContent = url;
+      qrUrlText.title = url;
+    }
+    const openLink = document.getElementById('btn-open-link');
+    if (openLink) openLink.href = url;
+    renderQR();
+  }
+
+  function renderQR() {
     if (!qrDisplay) return;
-    const svgCode = generateQRCodeSVG(DEFAULT_SITE_URL, 192);
-    qrDisplay.innerHTML = svgCode + '<div class="qr-center-badge">🧤</div>';
+    if (!isCustomUrl) {
+      qrDisplay.innerHTML = `<img id="qr-main-image" src="${ORIGINAL_QR_IMAGE}" alt="Do'kon QR Kodi" style="width:100%; height:100%; object-fit:contain; border-radius:10px; display:block;" />`;
+    } else {
+      qrDisplay.innerHTML = generateQRCodeSVG(currentQRUrl, 210, 'M');
+    }
   }
 
   function openQRModal() {
     initQRModal();
+    renderQR();
     qrModal.classList.add('is-open');
     qrModal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -259,24 +335,10 @@
     document.body.style.overflow = '';
   }
 
-  // Sahifadagi barcha QR konteynerlariga kichik QR kodlarni render qilish
-  function renderStaticQRCodes() {
-    const heroQR = document.getElementById('hero-qr-thumb');
-    if (heroQR) {
-      heroQR.innerHTML = generateQRCodeSVG(DEFAULT_SITE_URL, 50);
-    }
-
-    const footerQR = document.getElementById('footer-qr-box');
-    if (footerQR) {
-      footerQR.innerHTML = generateQRCodeSVG(DEFAULT_SITE_URL, 110);
-    }
-  }
-
-  // Tugmalarni ulash
-  function setupQRTriggers() {
+  function setupStaticQRElements() {
     initQRModal();
-    renderStaticQRCodes();
 
+    // Tugmalarni tinglash
     document.addEventListener('click', function (e) {
       const trigger = e.target.closest('[data-open-qr]');
       if (trigger) {
@@ -286,16 +348,17 @@
     });
   }
 
-  // Global eksport
+  // Global ob'ekt
   window.KeeperQR = {
     open: openQRModal,
     close: closeQRModal,
-    generateSVG: generateQRCodeSVG
+    download: downloadPNG,
+    setUrl: updateCustomUrl
   };
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupQRTriggers);
+    document.addEventListener('DOMContentLoaded', setupStaticQRElements);
   } else {
-    setupQRTriggers();
+    setupStaticQRElements();
   }
 })();

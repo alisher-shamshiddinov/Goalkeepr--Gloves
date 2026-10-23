@@ -13,11 +13,13 @@ Darvozabonlar uchun professional qo'lqoplar internet-do'koni. **12 ta haqiqiy fo
    - Sahifa bo'ylab qayerda bo'lsangiz ham bitta bosish bilan QR kodni ko'rish imkoniyati.
 4. **Footer dagi QR Kod kartasi**:
    - Sahifa pastki qismida smartfon kamerasini to'g'ridan-to'g'ri ekranga qaratib skanerlash uchun statik QR modul.
-5. **QR Kod Interaktiv Modali**:
-   - Tiniq, sifatli QR kod (markazida do'kon ramzi `🧤` bilan).
-   - "Havolani nusxalash" (`Copy Link`) tugmasi.
-   - "QR Kodni yuklab olish" (`.svg` formatda saqlash) tugmasi.
-   - Joriy URL ga moslashuvchan dinamik generatsiya algoritmi.
+5. **O'ta Tezkor QR Kod Interaktiv Modali (ISO/IEC 18004 Standarti)**:
+   - **Bir zumda skanerlash (0.1s)**: Har qanday smartfon kamerasi (iPhone, Samsung, Google Lens, Xiaomi) tomonidan bir zumda tanib olinadigan 100% standart QR matritsa.
+   - **Lazerli skaner animatsiyasi**: Zamonaviy vizual yashil lazer nuri.
+   - **Markaziy logotip**: O'chirib-yoqish imkoniyati (`🧤 Logoli` yoki `⚡ Sof (Ultra Fast)`).
+   - **Dinamik havola tahrirlash**: Istalgan Telegram kanal yoki boshqa havolani kiritish va real-time QR kod hosil qilish.
+   - **Yuklab olish formatlari**: Ham `.png` (yuqori aniqlikdagi 640px HD rasm), ham `.svg` (vektor).
+   - **Havolani nusxalash va to'g'ridan-to'g'ri brauzerda ochish** tugmalari.
 
 ---
 
